@@ -1,0 +1,36 @@
+{
+  "name": "gitvue",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --watch-content-base"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Cameron Allan",
+    "url": "https://github.com/CamerAllan"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apollo-fetch": "^0.7.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.16",
+    "bulma": "^0.7.4",
+    "vue": "git+https://github.com/DanielRosenwasser/vue.git#540a38fb21adb7a7bc394c65e23e6cffb36cd867",
+    "vue-router": "https://github.com/DanielRosenwasser/vue-router#01b8593cf69c2a5077df45e37e2b24d95bf35ce3"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.2",
+    "vue-loader": "^12.0.3",
+    "vue-template-compiler": "2.2.1",
+    "webpack": "^2.5.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^2.11.5"
+  }
+}
