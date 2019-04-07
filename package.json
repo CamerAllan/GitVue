@@ -20,15 +20,16 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.16",
     "bulma": "^0.7.4",
-    "vue": "git+https://github.com/DanielRosenwasser/vue.git#540a38fb21adb7a7bc394c65e23e6cffb36cd867",
-    "vue-router": "https://github.com/DanielRosenwasser/vue-router#01b8593cf69c2a5077df45e37e2b24d95bf35ce3"
+    "tslint": "^5.15.0",
+    "vue": "^2.6.10",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "css-loader": "^0.28.1",
     "ts-loader": "^2.0.3",
-    "typescript": "^2.3.2",
+    "typescript": "^3.4.2",
     "vue-loader": "^12.0.3",
-    "vue-template-compiler": "2.2.1",
+    "vue-template-compiler": "2.6.10",
     "webpack": "^2.5.0",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^2.11.5"

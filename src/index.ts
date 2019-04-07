@@ -1,13 +1,15 @@
 import Vue from "vue";
 import HomeComponent from "./components/HomePage.vue";
+import store from "./store/Store";
 
 let v = new Vue({
-    el: "#app",
-    template: `
+  el: "#app",
+  store,
+  components: {
+    HomeComponent
+  },
+  template: `
     <home-component />
     `,
-    data: {},
-    components: {
-        HomeComponent
-    }
+  data: {}
 });
