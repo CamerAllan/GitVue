@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand is-secondary">
       <!-- <a class="navbar-item" href="https://insert-my-page-here">
         <img src="https://insert-my-logo-here" width="112" height="28">
       </a>-->

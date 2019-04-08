@@ -1,13 +1,10 @@
 <template>
   <section class="homepage">
     <Navbar/>
+    <Welcome/>
     <div class="container">
-      <h1 class="title">GitVue</h1>
-      <p class="subtitle">
-        My first website with
-        <strong>Bulma</strong>!
-      </p>
-      <Commits/>
+      <p class="subtitle"></p>
+      <Vis :commits="this.$store.getters.commits"/>
     </div>
   </section>
 </template>
@@ -15,7 +12,8 @@
 <script>
 import Vue from "vue";
 import Navbar from "./Navbar";
-import Commits from "./Commits";
+import Vis from "./Vis";
+import Welcome from "./WelcomeBanner";
 
 export default Vue.extend({
   data() {
@@ -25,7 +23,8 @@ export default Vue.extend({
   },
   components: {
     Navbar,
-    Commits
+    Vis,
+    Welcome
   }
 });
 </script>
