@@ -6,13 +6,18 @@ const state = {
     repoName: "SEP-GroupPro",
     branchName: "develop"
   },
-  repoInfo: {}
+  repoInfo: {
+    commits: {},
+    branches: {}
+  }
 };
 
 const getters = {
   commits(state: any) {
-    //TODO: Return only commits
-    return state.repoInfo;
+    return state.repoInfo.commits;
+  },
+  branches(state: any) {
+    return state.repoInfo.branches;
   },
   repoName(state: any) {
     return state.repo.repoName;
@@ -31,8 +36,9 @@ const actions = {
     const response = fetchRepo(repo.ownerName, repo.repoName, repo.branchName);
 
     response.then(v => {
+      context.commit("SET_BRANCHES", v ? v.data.repository.refs.nodes : "sad");
       context.commit(
-        "SET_REPO_INFO",
+        "SET_COMMITS",
         v ? v.data.repository.ref.target.history.edges : "sad"
       );
     });
@@ -40,8 +46,11 @@ const actions = {
 };
 
 const mutations = {
-  SET_REPO_INFO(state: any, repoInfo: any) {
-    state.repoInfo = repoInfo;
+  SET_BRANCHES(state: any, branches: any) {
+    state.repoInfo.branches = branches;
+  },
+  SET_COMMITS(state: any, commits: any) {
+    state.repoInfo.commits = commits;
   }
 };
 

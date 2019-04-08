@@ -18,8 +18,7 @@ let v = new Vue({
   },
   template: `
     <home-component />
-    `,
-  data: {}
+    `
 });
 
 window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = v.constructor;

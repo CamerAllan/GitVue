@@ -5,7 +5,7 @@ const apolloFetch = createApolloFetch({ uri: GITHUB_GRAPHQL_API });
 
 apolloFetch.use(({ request, options }, next) => {
   options.headers = {
-    authorization: "bearer "
+    authorization: "bearer 0027f6cdedd52d28d67515785824ee832d4dad73"
   };
   next();
 });
@@ -15,9 +15,9 @@ export const fetchRepo = async (
   repoName: String,
   branchName: String
 ) => {
-  const queryBranches = `query {
+  const query = `query {
     repository(owner: "${ownerName}", name: "${repoName}") {
-      refs(first: 10, , refPrefix:"refs/") {
+      refs(first: 10, , refPrefix:"refs/heads/") {
         nodes {
           name
         }
@@ -32,6 +32,11 @@ export const fetchRepo = async (
               }
               edges {
                 node {
+                  parents(first: 1) {
+                    nodes {
+                      oid
+                    }
+                  }
                   messageHeadline
                   oid
                   message
@@ -48,37 +53,9 @@ export const fetchRepo = async (
       }
     }
   }`;
-  const queryCommits = `query {
-                      repository(owner: "${ownerName}", name: "${repoName}") {
-                        ref(qualifiedName: "${branchName}") {
-                          target {
-                            ... on Commit {
-                              id
-                              history(first: 99) {
-                                pageInfo {
-                                  hasNextPage
-                                }
-                                edges {
-                                  node {
-                                    messageHeadline
-                                    oid
-                                    message
-                                    author {
-                                      name
-                                      email
-                                      date
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }`;
   try {
     return apolloFetch({
-      query: queryBranches
+      query
     });
   } catch (error) {
     console.log(error);
