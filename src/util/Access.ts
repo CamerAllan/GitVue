@@ -5,7 +5,7 @@ const apolloFetch = createApolloFetch({ uri: GITHUB_GRAPHQL_API });
 
 apolloFetch.use(({ request, options }, next) => {
   options.headers = {
-    authorization: "bearer 0027f6cdedd52d28d67515785824ee832d4dad73"
+    authorization: "bearer fa7bc94f7fecd95ccc71207af5a594c94dbba4d8"
   };
   next();
 });

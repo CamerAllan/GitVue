@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    <Graph :nodes="nodes" :edges="edges"/>
+    <D3Network :net-nodes="nodes" :net-links="edges" :options="options" :linkCb="lcb"/>
   </div>
 </template>
 
 <script lang="js">
 import Vue from "vue";
-import Graph from "./Graph.vue";
-import * as vis from "vis";
+const D3Network = require("vue-d3-network");
 
 export default Vue.extend({
   name: "GraphContainer",
@@ -18,21 +17,46 @@ export default Vue.extend({
       const commitNodes = [];
       let i = 1;
       for (const c in this.commits) {
-        commitNodes.push({ id: i++, label: this.commits[c].node.oid });
+        commitNodes.push({ id: this.commits[c].node.oid, name: this.commits[c].node.messageHeadline });
       }
-      return new vis.DataSet(commitNodes);
+      return commitNodes;
     },
     edges: function() {
-      return new vis.DataSet([
-        { from: 1, to: 3 },
-        { from: 1, to: 2 },
-        { from: 2, to: 4 },
-        { from: 2, to: 5 }
-      ]);
+      const edges = [];
+      for (const c1 in this.commits) {
+        const oid1 = this.commits[c1].node.oid;
+          for (const c2 in this.commits) {
+            if (c1 !== c2) {
+              const oid2 = this.commits[c2].node.parents.nodes[0].oid;
+              if (oid1 == oid2) {
+                edges.push({tid:this.commits[c2].node.oid, sid: oid1, _color: "blue"});
+              }
+          }
+        }
+      }
+      console.log(edges);
+      return edges;
+    },
+    options(){
+      return{
+        force: 3000,
+        size: { w:1200, h:1200},
+        nodeSize: 10,
+        nodeLabels: true,
+        linkLabels: true,
+        canvas: this.canvas,
+        linkWidth:2
+      }
     }
   },
   components: {
-    Graph
+    D3Network
+  },
+  methods:{
+    lcb (link) {
+      link.class = "link curve";
+      return link
+    }
   }
 });
 </script>
